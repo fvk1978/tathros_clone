@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/css/photos.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
+        <link href="{% static 'web-design/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" media="all">
+        <link href="{% static 'web-design/css/themify-icons.css' %}" rel="stylesheet" type="text/css" media="all" />
+        <!-- <link href="{% static 'web-design/css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" /> -->
+        <!--<link href="{% static 'web-design/css/flexslider.css' %}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{% static 'web-design/css/lightbox.min.css' %}" rel="stylesheet" type="text/css" media="all" />-->
+        <link href="{% static 'web-design/css/ytplayer.css' %}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{% static 'web-design/css/theme-gunmetal.css' %}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{% static 'web-design/css/custom.css' %}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{% static 'web-design/stylus/styl-web.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+        <link href='http://fonts.googleapis.com/css?family=Lato:300,400%7CRaleway:100,400,300,500,600,700%7COpen+Sans:400,500,600' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="{% static 'bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css'%}"/>        
+        {% block css %}{% endblock %}
+    </head>
+    <body>
+    {% include "proto/common/header.html" %}
+    {% block content %}{% endblock %}
+    {% include "footer.html" %}
+        <script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.min.js ' %}"></script>
+        <script type="text/javascript" src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+        <!--<script src="{% static 'web-design/js/jquery.min.js' %}"></script>
+        <script src="{% static 'web-design/js/masonry.min.js' %}"></script>
+        <script src="{% static 'web-design/js/bootstrap.min.js' %}"></script>-->
+        <script type="text/javascript" src="{% static 'bower_components/masonry/dist/masonry.pkgd.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'bower_components/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js'%}"></script>
+        <script type="text/javascript" src="{% static 'bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.eu.min.js'%}"></script>        
+        {#  view specific logic  #}
+        {% if js_handler %}
+            {% with 'assets/js/views/'|add:js_handler|add:'.js' as controller_path %}
+                <script type="text/javascript" src="{% static controller_path %}"></script>
+            {% endwith %}
+        {% endif %}
+        <script type="text/javascript" src="{% static 'assets/js/infiniteScroll.js' %}"></script>
+        <script src="http://maps.google.com/maps/api/js?libraries=places&region=de&language=de&sensor=false"></script>
+        <script src="{% static 'web-design/js/flexslider.min.js' %}"></script>
+        <script src="{% static 'web-design/js/lightbox.min.js' %}"></script>
+        <script src="{% static 'web-design/js/twitterfetcher.min.js' %}"></script>
+        <script src="{% static 'web-design/js/spectragram.min.js' %}"></script>
+        <script src="{% static 'web-design/js/ytplayer.min.js' %}"></script>
+        <script src="{% static 'web-design/js/countdown.min.js' %}"></script>
+        <script src="{% static 'web-design/js/smooth-scroll.min.js' %}"></script>
+        <script src="{% static 'web-design/js/parallax.js' %}"></script>
+        <script src="{% static 'web-design/js/scripts.js' %}"></script>
+        {% block js %}
+        {% endblock %}
+    </body>
+</html>

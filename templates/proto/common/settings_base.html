@@ -1,0 +1,14 @@
+{% extends "proto/common/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="main-container">
+        <section class="page-title page-title-4 image-bg overlay parallax">
+            <div class="background-image-holder">
+                <img alt="Background Image" class="background-image" src="{% static 'web-design/img/cover14.jpg' %}">
+            </div>
+        </section>
+   		{% include "proto/common/settings_header.html" %}
+        {% block settings %}
+        {% endblock %}
+    </div>
+{% endblock %}

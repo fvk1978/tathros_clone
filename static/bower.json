@@ -1,0 +1,26 @@
+{
+  "name": "photo365",
+  "homepage": "https://github.com/tathros/tathros",
+  "authors": [
+    "Oleg Tikhonov <hellgy@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.0",
+    "bootstrap": "^3.3.6",
+    "mustache.js": "mustache#^2.2.1",
+    "masonry": "^4.0.0",
+    "imagesloaded": "^4.1.0",
+    "bootstrap-datepicker": "^1.6.0"
+  }
+}

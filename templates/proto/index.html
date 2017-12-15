@@ -1,0 +1,73 @@
+{% extends "proto/common/base.html" %}
+{% load static %}
+{% block css %}
+    <link href="{% static 'web-design/css/theme-gunmetal.css' %}" rel="stylesheet" type="text/css" media="all" />
+{% endblock css %}
+{% block content %}
+    <div class="main-container">
+        <section class="projects">
+            <div class="container">
+                <div class="masonry-loader">
+                    <div class="col-sm-12 text-center">
+                        <div class="spinner"></div>
+                    </div>
+                </div>
+                <div class="row masonry masonryFlyIn">
+                    {% for category in categories %}
+                    <div class="col-sm-3 masonry-item project" data-filter="People">
+                        <div class="image-tile hover-tile text-center" data-cat="{{category.slug}}">
+                            <img alt="image" class="background-image"
+                                 src="{{category.image.url}}">
+                            <div class="hover-state">
+                                <a href="#">
+                                    <h4 class="uppercase mb8">{{category.name}}</h4>
+                                    <h6 class="uppercase"></h6>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section class="image-bg parallax overlay">
+            <div class="background-image-holder">
+                <img alt="Background Image" class="background-image" src="{% static 'web-design/img/home2.jpg' %}">
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        {% include "proto/common/search.html" with custom_context=search_defaults %}
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section class="container-results">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h4 class="total hidden">
+                        Total of
+                        <span id="counter"></span>
+                        images
+                        <span class="btn disabled" id="results_link">
+                            See Results
+                            <span class="status"></span>
+                        </span>
+                        </h4>
+                        <h4 class="error hidden">
+                            No photos were found!
+                        </h4>
+                            <div id="grid" class="result_set">
+                            </div>
+                        <div class="error">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% load static %}
+<div class="nav-container">
+    <nav>
+        <div class="nav-bar">
+            <div class="module left">
+                <a href="/">
+                    <img class="logo logo-light" alt="Fotografen365" src="{% static 'web-design/img/365_de_logo_600px.png' %}">
+                    <img class="logo logo-dark" alt="Fotografen365" src="{% static 'web-design/img/365_de_logo_600px.png' %}">
+                </a>
+            </div>
+            <div class="module widget-handle mobile-toggle right visible-sm visible-xs">
+                <i class="ti-menu"></i>
+            </div>
+            <div class="module-group right">
+                <div class="module left">
+                    <ul class="menu">
+                        <li>
+                            <a href="{% url 'home' %}">Fotografen suchen</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'faq' %}">FAQ</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'info' %}">Als Fotograf anmelden</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                            <li>
+                                <a href="{% url 'settings_personal' %}">Mitgliederbereich</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                <div class="module widget-handle language left">
+                    <ul class="menu">
+                        <li class="has-dropdown">
+                            {% if user.is_authenticated %}
+                                <a >{{user.username}}</a>
+                            {% else %}
+                                <a >Guest</a>
+                            {% endif %}
+                            <ul>
+                                {% if user.is_authenticated %}
+                                    <li>
+                                        <a href="/">
+                                            Photo list
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'settings_personal' %}">
+                                            Settings
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'logout' %}" class="">
+                                            Logout
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        <a href="{% url 'login' %}">
+                                            Login
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'register' %}">
+                                            Register
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+      </div>
+    </nav>
+</div>

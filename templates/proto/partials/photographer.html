@@ -1,0 +1,29 @@
+{% load custom %}
+
+{% for p in photographers %}
+    <div class="row">
+        <div class="col col-lg-2">
+            {{ p.full_name }}
+        </div>
+
+        <div class="col col-lg-2">
+           {{ p.locations.all.0.country }}
+        </div>
+
+        <div class="col col-lg-2">
+            {{ p.locations.all.0.city }}
+        </div>
+
+        <div class="col col-lg-2">
+            {{ p.locations.all.0.street }}
+        </div>
+
+        <div class="col col-lg-2">
+            {{ p.locations.all.0.zip_code }}
+        </div>
+
+    <div class="col col-lg-2">
+            {{ point|distance:p.locations.all.0.point }} KM
+        </div>
+    </div>
+{% endfor %}

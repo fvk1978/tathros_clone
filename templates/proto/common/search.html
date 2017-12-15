@@ -1,0 +1,82 @@
+<div class="">
+    <form id="searchForm" name="searchForm" class="form-search">
+        <div class="col-lg-12 col-md-12 searchbar">
+            <div class="col-lg-5 col-md-5 col-xs-12 col-categorie">
+                <label for="query">Categories</label>
+                <select name="category" id="category">
+                        <option value="{{ custom_context.category }}" selected="selected">Alle!</option>
+                    {% for cat in categories %}
+                        <option value="{{ cat.slug }}">{{ cat.name }}</option>
+                    {% endfor %}
+                </select>
+
+            </div>
+            <div class="col-lg-5 col-md-5 col-xs-12 col-search">
+                   <label for="query">Start typing a zip code</label>
+                   <div class="container-search">
+                       <input type="text" name="query" id="query_string" value="{{ custom_context.location }}"
+                          class="form-control input-medium search-query"
+                          data-resource="{{ custom_context.resource }}"
+                          data-lat="{{ custom_context.lat }}"
+                          data-lng={{ custom_context.lng }}
+                          data-range="{{ custom_context.range }}">
+                        <span id="current_location" class="btn-filled mb0">
+                            <span class="glyphicon glyphicon-screenshot"></span>
+                        </span>
+                   </div>
+
+                    {% for id in hidden_ids %}
+                        <span class="hidden">
+                            <input type="checkbox" name="hidden_ids" value="{{ id }}">
+                        </span>
+                    {% endfor %}
+            </div>
+            <div class="col-lg-2 col-md-2 col-xs-12 col-btn-search">
+                <span id="search" class="btn-filled mb0">
+                    SEARCH<span class="glyphicon glyphicon-search"></span>
+                </span>
+            </div>
+        </div>
+        <div class="col-lg-12 overflow">
+            <div class="col-lg-12">
+                <label for="search_range">Range</label>
+            </div>
+            <div class="container-range col-lg-12">
+                <div class="searchbar">
+                    <label for="range_10">
+                        <input type="radio" id="range_10" name="search_range" value="10" data-range="10" checked="checked">
+                        Within 10km
+                    </label>
+                </div>
+                <div class="searchbar">
+                    <label for="range_20">
+                        <input type="radio" id="range_20" name="search_range" value="20" data-range="20">
+                        Within 20km
+                    </label>
+                </div>
+                <div class="searchbar">
+                    <label for="range_50">
+                        <input type="radio" id="range_50" name="search_range" value="50" data-range="50">
+                        Within 50km
+                    </label>
+                </div>
+                <div class="searchbar">
+                    <label for="range_100">
+                        <input type="radio" id="range_100" name="search_range" value="100" data-range="100">
+                        Within 100km
+                    </label>
+                </div>
+                <div class="searchbar">
+                    <label for="range_above_100">
+                        <input type="radio" id="range_above_100" name="search_range" value="-1" data-range="-1">
+                        Above 100km
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="col-lg-12">
+    <div id="map_canvas"></div>
+</div>

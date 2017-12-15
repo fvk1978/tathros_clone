@@ -1,0 +1,104 @@
+{% extends "proto/common/settings_base.html" %}
+{% block settings %}
+<div class="container page-scoreboard">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+            <h3>Your personal dashboard</h3>
+        </div>
+    </div>
+    <div class="section scoreboard _top-section">
+        <div class="row header">
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="col-lg-3">
+                    Member since
+                </div>
+                <div class="col-lg-2">
+                    Status
+                </div>
+                <div class="col-lg-3">
+                    Photos
+                </div>
+                <div class="col-lg-4">
+                    Categories
+                </div>
+            </div>
+        </div>
+        <div class="row content">
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="col-lg-3 user-createad">
+                    <div class="date-created-on">{{ p.created_on|date:"N j, Y" }}</div>
+                </div>
+                <div class="col-lg-2">
+                    <span class="content-middle-size _topmargin">{{ p.subscriptions.0.name | default:'Active' }}</span>
+                </div>
+                <div class="col-lg-3">
+                    <span class="content-middle-size _topmargin">{{ p.active_photos.count }}</span>
+                </div>
+                <div class="col-lg-4">
+                    <div class="categories-imgs">
+                    {% for cat in p.categories.all %}
+                        <a href="{% url 'settings_category' cat.pk cat.slug %}">
+                            <div class="img-tiny">
+                                <img src="{{cat.image.url}}">
+                            </div>
+                        </a>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section stats scoreboard">
+        <div class="row header">
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="col-lg-6">
+                    Your most liked images
+                </div>
+                <div class="col-lg-3">
+                    Impressions
+                    <!--Number of searches where your images were presented-->
+                </div>
+                <div class="col-lg-3">
+                    Likes
+                    <!--Number of ptential clients who like your photos-->
+                </div>
+            </div>
+        </div>
+        <div class="row content">
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="col-lg-6">
+                    {% for photo in p.top_photos %}
+                        <div class="img-small-container">
+                            <a href="{% url 'settings_edit' photo.pk %}">
+                                <div class="img-small">
+                                    <img src="{{ photo.image.url }}" alt="{{ photo.title }}">
+                                </div>
+                            </a>
+                        <span class="content-middle-size">{{ photo.likes.count }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="col-lg-3">
+                    <span class="content-middle-size _topmargin">{{ p.impressions }}</span>
+                </div>
+                <div class="col-lg-3">
+                    <span class="content-middle-size _topmargin">{{ p.likes }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if not p.subscription.is_premium %}
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+            <div class="scoreboard-btn-center">
+        <span class="btn btn-web-design">
+            Become a premium member to broaden your exposure
+        </span>
+    </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

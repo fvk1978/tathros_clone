@@ -1,0 +1,124 @@
+{% extends "proto/common/settings_base.html" %}
+{% load static %}
+{% block settings %}
+
+        <div class="container">
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <h3>Your personal data</h3>
+                    </div>
+                </div>
+                <div class="row generic-form">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                {{forms.form_user.first_name.errors}}
+                                <input type="text" class="mb0" placeholder="{{forms.form_user.first_name.label}}"
+                                       value="{{forms.form_user.first_name.value}}" name="first_name">
+                            </div>
+                            <div class="col-lg-6">
+                                {{forms.form_user.last_name.errors}}
+                                <input type="text" class="mb0" placeholder="{{forms.form_user.last_name.label}}"
+                                       value="{{forms.form_user.last_name.value}}" name="last_name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                {{forms.form_user.email.errors}}
+                                <input type="email" class="mb0" placeholder="{{forms.form_user.email.label}}"
+                                       value="{{forms.form_user.email.value}}" name="email">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                {{forms.form.birth_date.errors}}
+                                <div class="input-group date">
+                                    <input placeholder="{{forms.form.birth_date.label}}"
+                                           name="birth_date"
+                                           value="{{forms.form.birth_date.value|date:'d/m/Y'}}"
+                                           type="text" class="form-control datepicker">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                {{forms.form.company_name.errors}}
+                                <input type="text" class="mb0" placeholder="{{forms.form.company_name.label}}"
+                                       value="{{forms.form.company_name.value}}" name="company_name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                {{forms.form.website.errors}}
+                                <input type="text" class="mb0" placeholder="{{forms.form.website.label}}"
+                                       value="{{forms.form.website.value}}" name="website">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                {{forms.form.mobile_number.errors}}
+                                <input type="text" class="mb0" placeholder="{{forms.form.mobile_number.label}}"
+                                       value="{{forms.form.mobile_number.value}}" name="mobile_number">
+                            </div>
+                            <div class="col-lg-6">
+                                {{forms.form.phone_number.errors}}
+                                <input type="text" class="mb0" placeholder="{{forms.form.phone_number.label}}"
+                                       value="{{forms.form.phone_number.value}}" name="phone_number">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <input type="text" class="mb0" placeholder="Street" value="" name="street">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <input type="text" class="mb0" placeholder="Postal code" value="" name="postal_code">
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="mb0" placeholder="Town" value="" name="town">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h3>Email notifications</h3>
+                                <div>
+                                    <label class="unsubscribe">
+                                        <input type="checkbox" name="news_letter" value="1">
+                                        Email me with news from Fotografen365.com
+                                    </label>
+                                </div>
+                                <div>
+                                    <label for="">* We will never share your email address with anybody</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 centered">
+                                <input type="submit" value="Save updated data" class="btn btn-primary btn-web-design">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="personal-userpic-container">
+                            <div class="personal-userpic">
+                                <img src="{% if user.photographer.profile_image %}
+                                            {{user.photographer.profile_image.url}}
+                                          {% else %}
+                                            {% static 'assets/img/userpic-example.jpg' %}
+                                          {% endif %}">
+                            </div>
+                            <a href="#" class="personal-userpic-link">Modify your photo</a>
+                            <input type="file" name="profile_image" class="profile-image-upload">
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+{% endblock %}

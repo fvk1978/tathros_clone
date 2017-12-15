@@ -1,0 +1,46 @@
+{% extends "proto/common/settings_base.html" %}
+{% block settings %}
+<div class="container page-portafolio">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2">
+        <h3>Your portfolio images</h3>
+        <p>
+          You currently have {{ photos }} portfolio images in {{ categories|length }} categories.
+          <br>
+          Under your current membership plan, you can have 5 more images and 1 more category.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2">
+          {% for category, photos in categories %}
+            <div class="col-lg-3 container-category-photo">
+              <a href="{% url 'settings_category' category.pk category.slug %}" class="link-img-upload">
+                <img src="{{ category.image.url }}" class="img-responsive img-thumbnail">
+                <p class="title">{{ category }} ({{ photos }})</p>
+              </a>
+            </div>
+          {% endfor %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2">
+        <a href="{% url 'settings_upload' %}" class="btn btn-web-design btn-upload">Upload</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2">
+        <h3>Top Photos</h3>
+      </div>
+      <div class="col-lg-8 col-lg-offset-2">
+          {% for photo in top_photos %}
+            <div class="col-lg-3">
+                <a href="{% url 'settings_edit' photo.pk %}">
+                    <img src="{{ photo.image.url }}" class="img-responsive img-thumbnail">
+                </a>
+            </div>
+          {% endfor %}
+      </div>
+    </div>
+</div>
+{% endblock %}

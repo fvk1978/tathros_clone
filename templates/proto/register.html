@@ -1,0 +1,76 @@
+{% extends 'proto/common/base.html' %}
+{% load static %}
+{% block title %}Register{% endblock %}
+{% block css %}
+    <link href="{% static 'web-design/css/theme.css' %}" rel="stylesheet" type="text/css" media="all" />
+{% endblock css %}
+{% block content %}
+    <div class="main-container">
+
+        <section class="page-title page-title-4 image-bg overlay parallax">
+            <div class="background-image-holder">
+                <img alt="Background Image" class="background-image" src="{% static 'web-design/img/cover14.jpg' %}">
+            </div>
+        </section>
+    </div>
+    <div class="main-container">
+        <section class="cover fullscreen  image-bg overlay" id="register-container">
+            <div class="background-image-holder">
+                <img alt="image" class="background-image" src="{% static 'web-design/img/home12.jpg' %}" />
+            </div>
+            <div class="container v-align-transform">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+                        <div class="feature bordered text-center cnt-form-register">
+                            <h4 class="uppercase">Register Here</h4>
+                            <form class="text-left" method="POST" action="">
+                                {% csrf_token %}
+                                    <div id="user-container">
+                                {% for user_field in user_form %}
+                                    <div class="user_field ">
+                                        {{user_field.label_tag}}
+                                        {{user_field}}
+                                        {% if user_field.help_text %}
+                                            <span class="help_text">{{user_field.help_text|safe}}</span>
+                                        {% endif %}
+                                        <ul class="errorlist">
+                                            {{user_field.errors.as_text}}
+                                        </ul>
+                                     </div>
+                                {% endfor %}
+                                    </div>
+                                    <div id="photographer-container">
+                                {% for photographer_field in photographer_form %}
+                                    <div class="user_field ">
+                                        {{photographer_field.label_tag}}
+                                        {{photographer_field}}
+                                        {% if photographer_field.help_text %}
+                                        <span class="help_text">{{photographer_field.help_text|safe}}</span>
+                                        {% endif %}
+                                        <ul class="errorlist">
+                                                {{photographer_field.errors.as_text}}
+                                        </ul>
+                                        
+                                    </div>
+                                {% endfor %}
+                                    </div>
+                                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-3">
+                                    <input type="submit" value="Register" />
+                                </div>
+
+                                <!--<input class="mb0" type="text" placeholder="Username" name="username"/>
+                                <input class="mb0" type="password" placeholder="Password" name="password" />
+                                <input type="submit" value="register" /> -->
+                            </form>
+                            <!--<p class="mb0">Forgot your password?
+                                <a href="#">Click Here To Reset</a>
+                            </p>-->
+                        </div>
+                    </div>
+                </div>
+                <!--end of row-->
+            </div>
+            <!--end of container-->
+        </section>
+    </div>
+{% endblock %}

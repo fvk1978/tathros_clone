@@ -1,0 +1,15 @@
+{% if total %}
+<span class="total_amount hidden" data-total="{{ total }}">
+</span>
+{% endif %}
+
+{% for photo in photos %}
+	<div class="col-sm-3 masonry-item project fadeIn item">
+	    <label for="photo_{{ photo.id }}">
+	    <img src="/media/{{ photo.image }}"
+		     alt="{{ photo.title }}"
+		     data-id="{{ photo.id }}">
+		<input type="checkbox" class="hidden" name="photo_{{ photo.id }}" value="{{ photo.id }}">
+	    </label>
+	</div>
+{% endfor %}

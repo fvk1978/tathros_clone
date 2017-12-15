@@ -1,0 +1,26 @@
+{% extends "proto/common/settings_base.html" %}
+{% block settings %}
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+      <h3>Category: {{ category.name }}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+      <h3>Photos</h3>
+      {% for photo in photos %}
+        <div class="col-lg-3">
+          <a href="{% url 'settings_edit' photo.pk %}">
+            <img src="{{ photo.image.url }}" class="img-responsive img-thumbnail">
+            <strong>{{ photo.title }}</strong><br>
+            <small>{{ photo.description }}</small>
+          </a>
+          <br>
+          <a href="{% url 'settings_delete' photo.pk %}" class="btn btn-web-design-danger">Delete</a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

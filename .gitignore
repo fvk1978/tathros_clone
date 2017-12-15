@@ -1,0 +1,14 @@
+*.sqlite3
+*.pyc
+media/
+proto/mocks/img*
+.idea
+static/bower_components/
+.vagrant
+*.log
+.coverage
+_builds/
+_cache/
+_steps/
+_projects/
+wercker

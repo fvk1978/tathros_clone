@@ -1,0 +1,50 @@
+{% extends "proto/common/settings_base.html" %}
+
+{% block css %}
+  {{ form.media.css }}
+{% endblock %}
+
+{% block settings %}
+
+<div class="container page-upload">
+      <div class="row">
+          <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2>
+              <div class="feature bordered text-center">
+                  <h4 class="uppercase">IMAGE UPLOAD</h4>
+                  <form class="text-left" method="POST" enctype="multipart/form-data" action="">
+                      {% csrf_token %}
+                      <div class="user_field ">
+                          <label class="label-black" for="title">Title</label>
+                          <input id="title" name="title" type="text" class="mb0 input-md" value="{{ form.title.value }}">
+                          <p class="errorlist">{{ form.title.errors.as_text }}</p>
+                      </div>
+                      <div class="user_field">
+                        <label class="label-black" for="description">Description</label>
+                        <input id="description" name="description" type="text" class="mb0 input-md" value="{{ form.description.value }}">
+                        <p class="errorlist">{{ form.description.errors.as_text }}</p>
+                      </div>
+                      <div class="user_field">
+                        <label class="label-black" for="categories">Categories</label>
+                          <br>
+                          {{ form.categories }}
+                          <p class="errorlist">{{ form.categories.errors.as_text }}</p>
+                      </div>
+                      <div class="user_field">
+                          <label class="label-black" for="image">Image</label>
+                          <input id="image" name="image" class="input-file input-file-back" type="file">
+                           <p class="errorlist">{{ form.image.errors.as_text }}</p>
+                      </div>
+                      <input type="submit" class="btn-web-design btn" value="Upload" />
+
+                  </form>
+              </div>
+          </div>
+      </div>
+      <!--end of row-->
+</div>
+
+{% endblock %}
+
+{% block js %}
+  {{ form.media.js }}
+{% endblock %}

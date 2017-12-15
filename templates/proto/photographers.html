@@ -1,0 +1,58 @@
+{% extends "proto/common/base.html" %}
+{% load static %}
+{% block title %}Photographers{% endblock %}
+{% block content %}
+    <div class="main-container" id="page-result-photographers">
+        <section class="page-title page-title-4 image-bg overlay parallax">
+            <div class="background-image-holder">
+                <img alt="Background Image" class="background-image" src="{% static 'web-design/img/cover14.jpg' %}">
+            </div>
+        </section>
+        <div class="container">
+            {% if photographers %}
+            <div class="tbl tbl-result-photographers">
+                <div  class="row title">
+                    <div class="col col-lg-2">
+                        Name
+                    </div>
+                    <div class="col col-lg-2">
+                        Country
+                    </div>
+                    <div class="col col-lg-2">
+                        City
+                    </div>
+                    <div class="col col-lg-2">
+                        Street
+                    </div>
+                    <div class="col col-lg-2">
+                        Zipcode
+                    </div>
+                    <div class="col col-lg-2">
+                        Distance
+                    </div>
+                </div>
+                <div class="result_set">
+                    {% include 'partials/photographer.html' with obj=photographers %}
+                </div>
+                <div class="error">
+                </div>
+            </div>
+            {% else %}
+                <div class="row">
+                    <div class="col-lg-12">
+                        No photographers are currently available, you can add a new one below *
+                    </div>
+                </div>
+            {% endif %}
+            {% if photographerAdded %}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <span class="success">
+                            The photographer was added successfully
+                        </span>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
